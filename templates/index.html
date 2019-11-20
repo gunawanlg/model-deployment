@@ -1,0 +1,76 @@
+<h1 id="title">Graduates Survey Form</h1>
+<div id="form-border">
+  <p id="description">Let us know a little more about you...</p>
+  <form id="survey-form" action="" method="get">
+    <div class="rowTab">
+      <div class="labels">
+        <label id="name-label" for="name">* My Name:</label>
+      </div>
+      <div class="tidyTab">
+        <input id="name" type="text" placeholder="Enter your name" required class="input-field">
+      </div>
+    </div>
+    <div class="rowTab">
+      <div class="labels">
+        <label id="email-label" for="email">* My Email:</label>
+      </div>
+      <div class="tidyTab">
+        <input id="email" type="email" placeholder="Enter your email" required class="input-field">
+      </div>
+    </div>
+    <div class="rowTab">
+      <div class="labels">
+        <label id="number-label" for="number">* Age:</label>
+      </div>
+        <div class="tidyTab">
+          <input id="number" type="number" min=1 max=99 placeholder="Age" required class="input-field">
+        </div>
+      </div>
+      <div class="rowTab">
+        <div class="labels">
+          <label for="dropdown">* Major:</label>
+        </div>
+        <div class="tidyTab">
+          <select id="dropdown" class="dropdown" required>
+      <option disabled value>Select an option</option>
+      <option value="abc">EL</option>
+      <option value="def">EP</option>
+      <option value="ghi">ET</option>
+    </select>
+        </div>
+      </div>
+      <div class="rowTab">
+        <div class="labels">
+          <label for="ratings">How confident are you with your current professional skills?</label>
+        </div>
+        <div class="tidyTab">
+          <ul style="list-style: none" id="ratings">
+            <li class="radio"><label>Not much<input name="radio-buttons" value="1" type="radio"></label></li>
+            <li class="radio"><label>So-so<input name="radio-buttons" value="2" type="radio"></label></li>
+            <li class="radio"><label>Very confident<input name="radio-buttons" value="3" type="radio"></label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="rowTab">
+        <div class="labels">
+          <label>What are your plans after graduating?</label>
+        </div>
+        <div class="tidyTab">
+          <ul style="list-style: none">
+            <li class="checkbox"><label>Proceed with graduate degree<input name="likeliness" type="checkbox" value="1"></label></li>
+            <li class="checkbox"><label>Work in a company<input name="likeliness" type="checkbox" value="2"></label></li>
+            <li class="checkbox"><label>Start a business<input name="likeliness" type="checkbox" value="3"></label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="rowTab">
+        <div class="labels">
+          <label for="comments">Tell us more about your plan..</label>
+        </div>
+        <div class="tidyTab">
+          <textarea id="comments" placeholder="My current plan is..." maxlength="250" style="height:50px;resize:vertical;" class="input-field"></textarea>
+        </div>
+      </div>
+      <button id="submit" type="Submit">Submit</button>
+  </form>
+  </div>

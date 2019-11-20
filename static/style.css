@@ -1,0 +1,105 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+html,body {
+  background: hsl(60, 20%, 55%);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  min-width: 320px;
+}
+
+header {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 20px;
+}
+#form-border {
+  margin: 0 auto;
+  padding: 20px 20px 20px 20px;
+  background: hsl(60, 22%, 90%);
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.input-field {
+  height: 20px;
+  width: 280px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+.dropdown {
+  height: 30px;
+  width: 140px;
+  padding: 5px;
+  margin: 10px;  
+  margin-top: 15px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+.labels {
+  display: inline-block;
+  text-align: right;
+  width: 40%;
+  vertical-align: top;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.tidyTab {
+  display: inline-block;
+  text-align: left;
+  width: 47%;
+  vertical-align: middle;
+  margin-bottom: 0px;
+}
+
+.radio, .checkbox {
+  position: relative;
+  left: -43px;
+  margin-left: 10px;
+  padding-bottom: 10px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 5px;
+  float: left;
+}
+
+#submit {
+  background: #0099ff;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+@media screen and (max-width: 520px) {
+  .labels {
+    width: 100%;
+    text-align: left;
+  }
+  .rightTab {
+    width: 80%;
+    float: left;
+  }
+  .input-field {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 833px) {
+  .input-field {
+    width: 80%;
+  }
+  select {
+    width: 90%;
+  }
+}
