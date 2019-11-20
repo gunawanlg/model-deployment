@@ -27,15 +27,17 @@ payload = {
 }
 ```
 
-Body is an array of dictionary, with minimum size of 1, will return error code 400 if empty. Sample test using requests module in python
+Body is an array of dictionary, with minimum size of 1, will return error code 400 if empty. 
+
+Sample test using requests module in python.
 
 ```python
 import requests
 
 url = "https://gunawangaol.pythonanywhere.com/"
-r = request.get(url, payload)
+r = requests.get(url, payload)
 print(r.json())
 ```
 
 ## Single Data Formlike User Testing
-Visit [arc-rendezvous.github.io/model-deployment]()
+Visit [this link](https://arc-rendezvous.github.io/model-deployment/)
