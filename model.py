@@ -34,52 +34,51 @@ X_train = SC.fit_transform(X_train)
 X_test = SC.fit_transform(X_test)
 
 # Fitting Light GBM to the Training set
-import lightgbm as lgb
-from lightgbm import LGBMClassifier
-lgbm = LGBMClassifier()
-lgbm.fit(X_train, y_train)
+from sklearn.ensemble import RandomForestClassifier
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
 
 # Predicting the Test set results
-y_pred = lgbm.predict(X_test)
+y_pred = rf.predict(X_test)
 
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_auc_score
 
-lgbm_acc = accuracy_score(y_test, lgbm.predict(X_test))
-print(accuracy_score(y_test, lgbm.predict(X_test)))
+rf_acc = accuracy_score(y_test, rf.predict(X_test))
+print(accuracy_score(y_test, rf.predict(X_test)))
 
-lgbm_auc = roc_auc_score(y_test, lgbm.predict(X_test))
-print(roc_auc_score(y_test, lgbm.predict(X_test)))
+rf_auc = roc_auc_score(y_test, rf.predict(X_test))
+print(roc_auc_score(y_test, rf.predict(X_test)))
 
-print(lgbm.feature_importances_)
+print(rf.feature_importances_)
 
-plt.bar(range(len(lgbm.feature_importances_)), lgbm.feature_importances_)
+plt.bar(range(len(rf.feature_importances_)), rf.feature_importances_)
 plt.show()
 
-lgbm_feat = lgbm.feature_importances_
+rf_feat = rf.feature_importances_
 
-lgbm_mod = lgbm_feat.argsort()[-10:][::-1]
+rf_mod = rf_feat.argsort()[-10:][::-1]
 
-lgbm_mod
+rf_mod
 
-X_train = X_train[:, lgbm_mod]
+X_train = X_train[:, rf_mod]
 
-lgbm = LGBMClassifier()
-lgbm.fit(X_train, y_train)
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
 
-X_test = X_test[:, lgbm_mod]
+X_test = X_test[:, rf_mod]
 
 # Predicting the Test set results
-y_pred = lgbm10.predict(X_test)
+y_pred = rf.predict(X_test)
 
-lgbm_acc = accuracy_score(y_test, lgbm.predict(X_test))
-print(accuracy_score(y_test, lgbm.predict(X_test)))
+rf_acc = accuracy_score(y_test, rf.predict(X_test))
+print(accuracy_score(y_test, rf.predict(X_test)))
 
-lgbm_auc = roc_auc_score(y_test, lgbm.predict(X_test))
-print(roc_auc_score(y_test, lgbm.predict(X_test)))
+rf_auc = roc_auc_score(y_test, rf.predict(X_test))
+print(roc_auc_score(y_test, rf.predict(X_test)))
 
 # Saving model using pickle
-pickle.dump(lgbm, open('model.pkl','wb'))
+pickle.dump(rf, open('model.pkl','wb'))
 
 # Loading model to compare the results
 model = pickle.load(open('model.pkl','rb'))
