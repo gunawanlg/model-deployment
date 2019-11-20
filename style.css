@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 html,body {
-  background: hsl(60, 20%, 55%);
+  background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   min-width: 320px;
@@ -18,7 +18,7 @@ header {
   background: hsl(60, 22%, 90%);
   border-radius: 8px;
   width: 60%;
-  max-width: 800px;
+  max-width: 700px;
 }
 
 .input-field {
