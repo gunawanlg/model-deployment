@@ -51,6 +51,33 @@ print(accuracy_score(y_test, lgbm.predict(X_test)))
 lgbm_auc = roc_auc_score(y_test, lgbm.predict(X_test))
 print(roc_auc_score(y_test, lgbm.predict(X_test)))
 
+print(lgbm.feature_importances_)
+
+plt.bar(range(len(lgbm.feature_importances_)), lgbm.feature_importances_)
+plt.show()
+
+lgbm_feat = lgbm.feature_importances_
+
+lgbm_mod = lgbm_feat.argsort()[-10:][::-1]
+
+lgbm_mod
+
+X_train = X_train[:, lgbm_mod]
+
+lgbm = LGBMClassifier()
+lgbm.fit(X_train, y_train)
+
+X_test = X_test[:, lgbm_mod]
+
+# Predicting the Test set results
+y_pred = lgbm10.predict(X_test)
+
+lgbm_acc = accuracy_score(y_test, lgbm.predict(X_test))
+print(accuracy_score(y_test, lgbm.predict(X_test)))
+
+lgbm_auc = roc_auc_score(y_test, lgbm.predict(X_test))
+print(roc_auc_score(y_test, lgbm.predict(X_test)))
+
 # Saving model using pickle
 pickle.dump(lgbm, open('model.pkl','wb'))
 
