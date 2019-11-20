@@ -13,27 +13,70 @@ german_prep = german
 target = german_prep['default']
 temp = german_prep.drop(['default'], axis = 1)
 
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+german_model = pd.concat([temp, target], axis = 1)
 
-german_dummies = temp.select_dtypes(exclude=['int', 'int64', 'float64'])
-german_int = temp.select_dtypes(include=['int', 'int64', 'float64'])
-
-german_dummies_2 = pd.get_dummies(german_dummies, drop_first = True)
-
-german_model = pd.concat([german_int, german_dummies_2, target], axis = 1)
-
-x = german_model.iloc[:,0:len(german_model.columns)-1].values
-y = german_model.iloc[:,len(german_model.columns)-1].values
+X = german_model.iloc[:,0:len(german_model.columns)-1]
+y = german_model.iloc[:,len(german_model.columns)-1]
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 0) # test size 20% from train test
-SC = StandardScaler()
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0) # test size 20% from train test
 
-X_train = SC.fit_transform(X_train)
-X_test = SC.fit_transform(X_test)
+X_train_ori = X_train
+X_test_ori = X_test
 
-# Fitting Light GBM to the Training set
+X_train_ori
+
+# Categorical boolean mask
+categorical_feature_mask = german_model.dtypes==object
+numerical_feature_mask = german_model.dtypes!=object
+
+# filter categorical columns using mask and turn it into a list
+categorical_cols = german_model.columns[categorical_feature_mask]
+numerical_cols = german_model.columns[numerical_feature_mask]
+
+from sklearn.preprocessing import LabelEncoder
+temp = {}
+for col in categorical_cols:
+    le = LabelEncoder()
+    le.fit(X_train[col])
+    temp[col] = dict(zip(le.classes_, le.transform(le.classes_)))
+
+temp
+
+type(temp)
+
+dict(zip(le.classes_, le.transform(le.classes_)))
+
+class MultiColumnLabelEncoder:
+    def __init__(self,columns = None):
+        self.columns = columns # array of column names to encode
+
+    def fit(self,X,y=None):
+        return self # not relevant here
+
+    def transform(self,X):
+        '''
+        Transforms columns of X specified in self.columns using
+        LabelEncoder(). If no columns specified, transforms all
+        columns in X.
+        '''
+        output = X.copy()
+        if self.columns is not None:
+            for col in self.columns:
+                output[col] = LabelEncoder().fit_transform(output[col])
+        else:
+            for colname,col in output.iteritems():
+                output[colname] = LabelEncoder().fit_transform(col)
+        return output
+
+    def fit_transform(self,X,y=None):
+        return self.fit(X,y).transform(X)
+
+X_train = MultiColumnLabelEncoder(columns=categorical_cols).fit_transform(X_train).to_numpy()
+X_test = MultiColumnLabelEncoder(columns=categorical_cols).fit_transform(X_test).to_numpy()
+
+# Fitting Random Forest to the Training set
 from sklearn.ensemble import RandomForestClassifier
 rf = RandomForestClassifier()
 rf.fit(X_train, y_train)
@@ -57,9 +100,11 @@ plt.show()
 
 rf_feat = rf.feature_importances_
 
-rf_mod = rf_feat.argsort()[-10:][::-1]
+rf_mod = rf_feat.argsort()[-5:][::-1]
 
 rf_mod
+
+type(X_train)
 
 X_train = X_train[:, rf_mod]
 
@@ -83,3 +128,32 @@ pickle.dump(rf, open('model.pkl','wb'))
 # Loading model to compare the results
 model = pickle.load(open('model.pkl','rb'))
 # print(model.predict([[1.8]]))
+
+fin = X_train_ori.iloc[:, rf_mod]
+
+fin
+
+fin.dtypes
+
+# Categorical boolean mask
+categorical_feature_mask = fin.dtypes==object
+numerical_feature_mask = fin.dtypes!=object
+
+# filter categorical columns using mask and turn it into a list
+categorical_cols = fin.columns[categorical_feature_mask]
+numerical_cols = fin.columns[numerical_feature_mask]
+
+temp = {}
+for col in categorical_cols:
+    le = LabelEncoder()
+    le.fit(X_train_ori[col])
+    temp[col] = dict(zip(le.classes_, le.transform(le.classes_)))
+
+temp
+
+X_train_ori['credit_amount'].describe()
+
+X_train_ori['age'].describe()
+
+X_train_ori['duration_in_month'].describe()
+
