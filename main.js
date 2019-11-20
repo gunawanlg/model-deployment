@@ -22,7 +22,7 @@ $(document).on('click','#submit',function(){
     else{
       var requestURL = "https://gunawangaol.pythonanywhere.com/prediction?feature1="+feature1+"&feature2="+feature2+"&feature3="+feature3+"&feature4="+feature4+"&feature5="+feature5;
       
-      d3.JSON(requestURL, function(data) {
+      d3.json(requestURL, function(data) {
         console.log(data); // log the data for troubleshooting
         alert(data);
         // prediction = data['json_key_for_the_prediction'];
