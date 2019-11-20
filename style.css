@@ -17,7 +17,7 @@ header {
   padding: 20px 20px 20px 20px;
   background: hsl(60, 22%, 90%);
   border-radius: 8px;
-  width: 80%;
+  width: 60%;
   max-width: 800px;
 }
 
@@ -71,6 +71,7 @@ input[type="radio"], input[type="checkbox"] {
 #submit {
   display: relative;
   margin: 0 auto;
+  margin-top: 20px;
   background: #0099ff;
   color: white;
   font-weight: bold;
@@ -85,6 +86,11 @@ input[type="radio"], input[type="checkbox"] {
   line-height: 40px;
   cursor: pointer;
 }
+
+#result {
+  padding-top: 20px;
+}
+
 @media screen and (max-width: 520px) {
   .labels {
     width: 100%;

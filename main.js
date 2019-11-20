@@ -1,4 +1,4 @@
-var feature1_ ,feature2_, feature3_, feature4_, feature5_;
+var feature1_ ,feature2_, feature3_, feature4_, feature5_, prediction;
 
 $(document).ready(function(){
   // fetch all DOM elements for the input
@@ -24,9 +24,8 @@ $(document).on('click','#submit',function(){
       
       d3.json(requestURL, function(data) {
         console.log(data); // log the data for troubleshooting
-        alert(data);
-        // prediction = data['json_key_for_the_prediction'];
+        prediction = "rejected" 
+        $("#result").html("Your application is: " + "<span style='color:red;'>"+prediction+"</span>");
       });
-    //   $(".result").html("Prediction is:" + prediction);
     }
   });
