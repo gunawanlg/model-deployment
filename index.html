@@ -7,13 +7,12 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
   <body>
-    <h1 id="title">CUSTOMER DEFAULT PREDICTION</h1>
 <div id="form-border">
-  <p id="description">Please fill the forms below.</p>
+  <h1 id="description">Customer Default Prediction</h1>
   <form id="survey-form">
     <div class="rowTab">
       <div class="labels">
-        <label id="feature1-label" for="feature1">* My Name:</label>
+        <label id="feature1-label" for="feature1">Credit amount:</label>
       </div>
       <div class="tidyTab">
         <input id="feature1" type="text" placeholder="Enter value" class="input-field" required>
@@ -21,7 +20,7 @@
     </div>
     <div class="rowTab">
       <div class="labels">
-        <label id="feature2-label" for="feature2">* My Email:</label>
+        <label id="feature2-label" for="feature2">Duration (in month):</label>
       </div>
       <div class="tidyTab">
         <input id="feature2" type="text" placeholder="Enter value" class="input-field" required>
@@ -29,42 +28,47 @@
     </div>
     <div class="rowTab">
       <div class="labels">
-        <label id="feature3-label" for="feature3">* Age:</label>
+        <label id="feature3-label" for="feature3">Age:</label>
       </div>
         <div class="tidyTab">
           <input id="feature3" type="number" min=1 max=99 placeholder="Enter value" class="input-field" required>
         </div>
     </div>
-    <div class="rowTab">
-      <div class="labels">
-        <label id="feature4-label" for="feature4">* Feat4: </label>
-      </div>
-        <div class="tidyTab">
-          <input id="feature4" type="number" min=1 max=99 placeholder="Enter value" class="input-field" required>
-        </div>
-    </div>
-    <div class="rowTab">
-      <div class="labels">
-        <label id="feature5-label" for="feature5">* Feat5:</label>
-      </div>
-        <div class="tidyTab">
-          <input id="feature5" type="number" min=1 max=99 placeholder="Enter value" class="input-field" required>
-        </div>
-    </div>
 
-      <!-- <div class="rowTab">
-        <div class="labels">
-          <label for="dropdown">* Major:</label>
-        </div>
-        <div class="tidyTab">
-          <select id="dropdown" class="dropdown" required>
-            <option disabled value>Select an option</option>
-            <option value="abc">EL</option>
-            <option value="def">EP</option>
-            <option value="ghi">ET</option>
-          </select>
-        </div>
-      </div> -->
+    <div class="rowTab">
+      <div class="labels">
+        <label for="feature4">Checking account status:</label>
+      </div>
+      <div class="tidyTab">
+        <select id="feature4" class="dropdown" required>
+          <option disabled value>Select an option</option>
+          <option value="0" selected="selected">0 <= ... < 200 DM</option>
+          <option value="1">< 0 DM</option>
+          <option value="2">>= 200 DM / salary assignments for at least 1 year</option>
+          <option value="3">no checking account</option>
+        </select>
+      </div>
+    </div>
+    <div class="rowTab">
+      <div class="labels">
+        <label for="feature5">Checking account status:</label>
+      </div>
+      <div class="tidyTab">
+        <select id="feature5" class="dropdown" required>
+          <option disabled value>Select an option</option>
+          <option value="0" selected="selected">(vacation - does not exist?)</option>
+          <option value="1">business</option>
+          <option value="2">car (new)</option>
+          <option value="3">car (used)</option>
+          <option value="4">domestic appliances</option>
+          <option value="5">education</option>
+          <option value="6">furniture/equipment</option>
+          <option value="7">radio/television</option>
+          <option value="8">repairs</option>
+          <option value="9">retraining</option>
+        </select>
+      </div>
+    </div>
       <div id="submit">Submit</div>
       <div id="result"></div>
   </form>

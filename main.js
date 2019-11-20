@@ -5,8 +5,8 @@ $(document).ready(function(){
   feature1_ = document.getElementById("feature1");
   feature2_ = document.getElementById("feature2");
   feature3_ = document.getElementById("feature3");
-  feature4_ = document.getElementById("feature1");
-  feature5_ = document.getElementById("feature2");
+  feature4_ = document.getElementById("feature4");
+  feature5_ = document.getElementById("feature5");
 })
 
 $(document).on('click','#submit',function(){
@@ -14,8 +14,9 @@ $(document).on('click','#submit',function(){
     var feature1 = feature1_.value;
     var feature2 = feature2_.value;
     var feature3 = feature3_.value;
-    var feature4 = feature4_.value;
-    var feature5 = feature5_.value;
+    var feature4 = feature4_.options[feature4_.selectedIndex].value;
+    var feature5 = feature5_.options[feature5_.selectedIndex].value;
+    
     if(feature1 == "" || feature2 == "" || feature3 == "" || feature4 == "" || feature5 == ""){
       alert("empty fields not allowed");
     }
