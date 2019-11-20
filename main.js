@@ -16,7 +16,7 @@ $(document).on('click','#submit',function(){
     var feature3 = feature3_.value;
     var feature4 = feature4_.options[feature4_.selectedIndex].value;
     var feature5 = feature5_.options[feature5_.selectedIndex].value;
-    
+
     if(feature1 == "" || feature2 == "" || feature3 == "" || feature4 == "" || feature5 == ""){
       alert("empty fields not allowed");
     }
@@ -25,8 +25,13 @@ $(document).on('click','#submit',function(){
       
       d3.json(requestURL, function(data) {
         console.log(data); // log the data for troubleshooting
-        prediction = "rejected" 
-        $("#result").html("Your application is: " + "<span style='color:red;'>"+prediction+"</span>");
+        if (data['pred'] == 1) {
+            prediction = "approved"
+            $("#result").html("Your application is: " + "<span style='color:green;'>"+prediction+"</span>");
+        } else {
+            prediction = "rejected"
+            $("#result").html("Your application is: " + "<span style='color:red;'>"+prediction+"</span>");
+        }
       });
     }
   });
