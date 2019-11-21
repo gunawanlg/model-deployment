@@ -22,10 +22,10 @@ def predict():
         df = pd.DataFrame(data['body'])
 
         # Load the model
-        clf_lgb = load('/home/gunawangaol/mysite/model.pkl')
+        clf_rf = load('/home/gunawangaol/mysite/model.pkl')
 
         # Generate prediction
-        pred = clf_lgb.predict(df)
+        pred = clf_rf.predict(df)
 
         return jsonify(
             data=df.to_dict(orient='records'),
@@ -55,10 +55,10 @@ def predict_ui():
     df = pd.DataFrame(X)
 
     # Load the model
-    clf_lgb = load('/home/gunawangaol/mysite/model.pkl')
+    clf_rf = load('/home/gunawangaol/mysite/model.pkl')
 
     # Generate prediction
-    pred = clf_lgb.predict(df)
+    pred = clf_rf.predict(df)
 
     return jsonify(
         data=df.to_dict(orient='records'),
