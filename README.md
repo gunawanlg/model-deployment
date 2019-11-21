@@ -35,9 +35,9 @@ Sample test using requests module in python.
 import requests
 
 url = "https://gunawangaol.pythonanywhere.com/"
-r = requests.get(url, payload)
+r = requests.get(url, json=payload)
 print(r.json())
 ```
 
 ## Single Data Formlike User Testing
-Visit [this link](https://arc-rendezvous.github.io/model-deployment/)
+Visit [this link](https://arc-rendezvous.github.io/model-deployment/).
